@@ -2,6 +2,7 @@ package com.example.popularmovies.network;
 
 import android.content.Context;
 
+import com.example.popularmovies.services.MovieService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -83,5 +84,19 @@ public class NetworkModule {
                 .baseUrl(networkConfig.baseUrl)
                 .client(okHttpClient)
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    @SuppressWarnings("unused")
+    public NetworkService providesNetworkService(Retrofit retrofit){
+        return retrofit.create(NetworkService.class);
+    }
+
+    @Provides
+    @Singleton
+    @SuppressWarnings("unused")
+    public MovieService providesMovieService(NetworkService service){
+        return new MovieService(service);
     }
 }
