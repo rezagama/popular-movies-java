@@ -3,6 +3,7 @@ package com.example.popularmovies.deps;
 import com.example.popularmovies.MovieApp;
 import com.example.popularmovies.home.HomeActivity;
 import com.example.popularmovies.common.AppModule;
+import com.example.popularmovies.network.NetworkModule;
 
 import javax.inject.Singleton;
 
@@ -14,7 +15,8 @@ import dagger.Component;
 
 @Singleton
 @Component (modules = {
-        AppModule.class
+        AppModule.class,
+        NetworkModule.class
 })
 
 public interface AppDependencies {
