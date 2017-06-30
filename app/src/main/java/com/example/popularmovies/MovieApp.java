@@ -6,6 +6,7 @@ import com.example.popularmovies.common.AppModule;
 import com.example.popularmovies.deps.AppDependencies;
 import com.example.popularmovies.deps.AppDependenciesProvider;
 import com.example.popularmovies.deps.DaggerAppDependencies;
+import com.example.popularmovies.network.NetworkModule;
 
 /**
  * Created by rezagama on 6/30/17.
@@ -17,7 +18,9 @@ public class MovieApp extends MultiDexApplication implements AppDependenciesProv
     @Override
     public void onCreate() {
         super.onCreate();
-        appDependencies = DaggerAppDependencies.builder().appModule(new AppModule(this)).build();
+        appDependencies = DaggerAppDependencies.builder().appModule(new AppModule(this))
+                .networkModule(new NetworkModule(getString(R.string.server_url, getString(R.string.server_ver))))
+                .build();
         appDependencies.inject(this);
     }
 
