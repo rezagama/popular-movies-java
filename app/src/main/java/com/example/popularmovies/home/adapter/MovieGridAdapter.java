@@ -64,6 +64,12 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieGridAdapter.Movi
         notifyDataSetChanged();
     }
 
+    public void clearResults(){
+        if (results.size() == 0) return;
+        results.clear();
+        notifyDataSetChanged();
+    }
+
     public interface OnClickListener {
         void onMovieGridClick(Result result);
     }

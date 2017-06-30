@@ -11,5 +11,11 @@ public interface HomeView {
 
     void onLoadMovieGrid(Movie movie);
 
+    void showProgressText();
+
+    void hideProgressText();
+
+    void resetResults();
+
     void onError();
 }

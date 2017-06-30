@@ -27,9 +27,35 @@ public class HomePresenter {
     }
 
     public void getMovieList(){
+        view.resetResults();
+        view.showProgressText();
         Subscription subscription = service.getMovieList(new NetworkCallback<Movie, Throwable>() {
             @Override
             public void onSuccess(Movie response) {
+                view.hideProgressText();
+                view.onLoadMovieGrid(response);
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                view.onError();
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        });
+        subscriptions.add(subscription);
+    }
+
+    public void getTopRatedMovies(){
+        view.resetResults();
+        view.showProgressText();
+        Subscription subscription = service.getTopRatedMovies(new NetworkCallback<Movie, Throwable>() {
+            @Override
+            public void onSuccess(Movie response) {
+                view.hideProgressText();
                 view.onLoadMovieGrid(response);
             }
 
