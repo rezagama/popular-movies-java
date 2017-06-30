@@ -12,4 +12,6 @@ import rx.Observable;
 public interface NetworkService {
     @GET("movie/popular")
     Observable<Movie> getMovieList();
+    @GET("movie/top_rated")
+    Observable<Movie> getTopRatedMovies();
 }
