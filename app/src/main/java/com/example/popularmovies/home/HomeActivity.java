@@ -1,5 +1,6 @@
 package com.example.popularmovies.home;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,15 @@ import android.widget.AdapterView;
 import com.example.popularmovies.R;
 import com.example.popularmovies.databinding.ActivityHomeBinding;
 import com.example.popularmovies.deps.AppDependenciesProvider;
+import com.example.popularmovies.detail.MovieDetailActivity;
 import com.example.popularmovies.home.adapter.MovieGridAdapter;
 import com.example.popularmovies.home.model.Movie;
 import com.example.popularmovies.home.model.Result;
 import com.example.popularmovies.services.MovieService;
 
 import javax.inject.Inject;
+
+import static com.example.popularmovies.detail.MovieDetailActivity.MOVIE_DATA;
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
     private static final int SORT_BY_POPULARITY = 0;
@@ -68,7 +72,9 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     }
 
     private void navigateToMovieDetail(Result result){
-        //TODO: Handle movie detail navigation
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra(MOVIE_DATA, result);
+        startActivity(intent);
     }
 
     @Override
