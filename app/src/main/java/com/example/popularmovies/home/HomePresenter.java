@@ -26,33 +26,10 @@ public class HomePresenter {
         view.onViewCreated();
     }
 
-    public void getMovieList(){
+    public void getMovieList(String sortBy){
         view.resetResults();
         view.showProgressText();
-        Subscription subscription = service.getMovieList(new NetworkCallback<Movie, Throwable>() {
-            @Override
-            public void onSuccess(Movie response) {
-                view.hideProgressText();
-                view.onLoadMovieGrid(response);
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                view.onError();
-            }
-
-            @Override
-            public void onCompleted() {
-
-            }
-        });
-        subscriptions.add(subscription);
-    }
-
-    public void getTopRatedMovies(){
-        view.resetResults();
-        view.showProgressText();
-        Subscription subscription = service.getTopRatedMovies(new NetworkCallback<Movie, Throwable>() {
+        Subscription subscription = service.getMovieList(sortBy, new NetworkCallback<Movie, Throwable>() {
             @Override
             public void onSuccess(Movie response) {
                 view.hideProgressText();

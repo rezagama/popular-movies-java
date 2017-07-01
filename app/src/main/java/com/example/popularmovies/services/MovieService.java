@@ -20,30 +20,8 @@ public class MovieService {
         this.service = service;
     }
 
-    public Subscription getMovieList(NetworkCallback<Movie, Throwable> callback){
-        return service.getMovieList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Movie>() {
-                    @Override
-                    public void onCompleted() {
-                        callback.onCompleted();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        callback.onError(e);
-                    }
-
-                    @Override
-                    public void onNext(Movie movie) {
-                        callback.onSuccess(movie);
-                    }
-                });
-    }
-
-    public Subscription getTopRatedMovies(NetworkCallback<Movie, Throwable> callback){
-        return service.getTopRatedMovies()
+    public Subscription getMovieList(String sortBy, NetworkCallback<Movie, Throwable> callback){
+        return service.getMovieList(sortBy)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Movie>() {

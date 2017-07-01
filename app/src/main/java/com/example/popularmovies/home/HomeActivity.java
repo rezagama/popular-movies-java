@@ -22,6 +22,8 @@ import javax.inject.Inject;
 import static com.example.popularmovies.detail.MovieDetailActivity.MOVIE_DATA;
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
+    private static final String SORT_BY_POPULARITY_KEY = "popular";
+    private static final String SORT_BY_TOP_RATED_KEY = "top_rated";
     private static final int SORT_BY_POPULARITY = 0;
     private static final int GRID_COLUMN = 2;
 
@@ -51,9 +53,9 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i == SORT_BY_POPULARITY){
-                    presenter.getMovieList();
+                    presenter.getMovieList(SORT_BY_POPULARITY_KEY);
                 } else {
-                    presenter.getTopRatedMovies();
+                    presenter.getMovieList(SORT_BY_TOP_RATED_KEY);
                 }
             }
 
@@ -62,7 +64,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
 
             }
         });
-        presenter.getMovieList();
+        presenter.getMovieList(SORT_BY_POPULARITY_KEY);
     }
 
     @Override
