@@ -3,6 +3,7 @@ package com.example.popularmovies.network;
 import com.example.popularmovies.home.model.Movie;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -10,8 +11,6 @@ import rx.Observable;
  */
 
 public interface NetworkService {
-    @GET("movie/popular")
-    Observable<Movie> getMovieList();
-    @GET("movie/top_rated")
-    Observable<Movie> getTopRatedMovies();
+    @GET("movie/{sort_by}")
+    Observable<Movie> getMovieList(@Path("sort_by") String sortBy);
 }
