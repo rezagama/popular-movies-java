@@ -26,8 +26,10 @@ public class HomePresenter {
         view.onViewCreated();
     }
 
+    public void getMovieList(String sortBy){
         view.resetResults();
         view.showProgressText();
+        Subscription subscription = service.getMovieList(sortBy, new NetworkCallback<Movie, Throwable>() {
             @Override
             public void onSuccess(Movie response) {
                 view.hideProgressText();
